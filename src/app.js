@@ -15,9 +15,7 @@ const { errorConverter, errorHandler } = require('./middlewares/error');
 const ApiError = require('./utils/ApiError');
 const cookieParser = require('cookie-parser');
 const fileUpload = require('express-fileupload');
-
-const { sendEmail, sendConfirmationEmail, verifyConfirmationCode} = require('./services/emailMicroserive.services');
-const uploadFileToS3 = require('./services/uploadDocs');
+const emailRoutes = require('./routes/emailRoutes/emailRoutes');
 
 const app = express();
 
@@ -62,10 +60,8 @@ if (config.env === 'production') {
 // v1 api routes
 app.use('/v1', routes);
 
-app.post('/send-email', sendEmail);
-app.post('/send-otp', sendConfirmationEmail);
-app.post('/verify-otp', verifyConfirmationCode);
-app.post('/upload-file', uploadFileToS3);
+// send email
+app.use('/email', emailRoutes);
 
 // send back a 404 error for any unknown api request
 app.use((req, res, next) => {
