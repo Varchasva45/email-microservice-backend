@@ -52,31 +52,32 @@ const sendEmail = async (req, res) => {
             attachments: attachments,
         };
 
-        // const emailData = {
-        //     from: userEmail,
-        //     to: recipientEmail,
-        //     cc: cc,
-        //     bcc: bcc,
-        //     subject: emailSubject,
-        //     message: emailBody,
-        //     attachments: fileUrl,
-        // };
+        // database
+        const emailData = {
+            from: userEmail,
+            to: recipientEmail,
+            cc: cc,
+            bcc: bcc,
+            subject: emailSubject,
+            message: emailBody,
+            attachments: fileUrl,
+        };
 
-        // const user = await User.findOneAndUpdate(
-        //     { email: userEmail },
-        // );
+        const user = await User.findOneAndUpdate(
+            { email: userEmail },
+        );
 
-        // const newEmail = await Email.create(emailData);
-        // user.emails.push(newEmail._id);
-        // await user.save();
-        // await newEmail.save();
+        const newEmail = await Email.create(emailData);
+        user.emails.push(newEmail._id);
+        await user.save();
+        await newEmail.save();
 
         const info = await transporter.sendMail(mailOptions);
 
         console.log('Email sent:', info.response);
         res.send("Email sent successfully");
     } catch (error) {
-        console.error('Error sending email:', error);
+        // console.error('Error sending email:', error);
         res.status(500).send("Internal Server Error");
     }
 };
