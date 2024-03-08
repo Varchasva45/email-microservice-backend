@@ -57,6 +57,11 @@ if (config.env === 'production') {
   app.use('/v1/auth', authLimiter);
 }
 
+// get route to confirm if the server is running 
+app.get("/", (req, res) => {
+  res.send("Server is up and running!");
+};
+
 // v1 api routes
 app.use('/v1', routes);
 
