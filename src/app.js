@@ -59,7 +59,7 @@ if (config.env === 'production') {
 
 // get route to confirm if the server is running 
 app.get("/", (req, res) => {
-  res.send("Server is up and running");
+  res.send("Server is up and running with updated ci-cd");
 });
 
 // v1 api routes
