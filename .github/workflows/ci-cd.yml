@@ -15,7 +15,7 @@ jobs:
 
       - name: SSH and deploy
         env:
-          SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
+          SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }} # updated private key
           HOST_DNS: ${{ secrets.HOST_DNS }}
         run: |
           echo "$SSH_PRIVATE_KEY" > keyfile
