@@ -60,7 +60,7 @@ if (config.env === 'production') {
 // get route to confirm if the server is running 
 app.get("/", (req, res) => {
   res.send("Server is up and running!");
-};
+});
 
 // v1 api routes
 app.use('/v1', routes);
