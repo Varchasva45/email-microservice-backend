@@ -77,8 +77,8 @@ const sendEmail = async (req, res) => {
         console.log('Email sent:', info.response);
         res.send("Email sent successfully");
     } catch (error) {
-        // console.error('Error sending email:', error);
-        res.status(500).send("Internal Server Error");
+        console.error('Error sending email:', error);
+        res.status(500).send("Internal Server Error", error);
     }
 };
 

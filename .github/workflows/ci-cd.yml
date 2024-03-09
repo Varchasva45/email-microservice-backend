@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout the files
+      - name: Checkout the files #This will transer the files to the ec2 instance
         uses: actions/checkout@v2
 
       - name: SSH and deploy
@@ -20,7 +20,7 @@ jobs:
         timeout-minutes: 1
         run: |
           echo "$SSH_PRIVATE_KEY" > keyfile
-          chmod 600 keyfile
+          chmod 600 keyfile 
           mkdir -p ~/.ssh
           cp known_hosts ~/.ssh/known_hosts
           ssh -i keyfile ubuntu@$HOST_DNS "sudo bash ~/deploy.sh"
