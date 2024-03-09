@@ -10,6 +10,7 @@ const otpStorage = new Map();
 
 // Function to send email with attachments
 const sendEmail = async (req, res) => {
+    console.log("sending email");
     try {
         const userEmail = req.body.from;
         const recipientEmail = req.body.to;
